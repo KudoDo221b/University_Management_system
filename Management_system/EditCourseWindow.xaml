@@ -1,0 +1,48 @@
+﻿<Window x:Class="Management_system.EditCourseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Management_system"
+        mc:Ignorable="d"
+        Title="EditCourseWindow" Height="600" Width="800">
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="SỬA MÔN HỌC"
+                   FontSize="22" FontWeight="Bold"
+                   Foreground="#CC0000"
+                   HorizontalAlignment="Center"/>
+
+        <StackPanel Grid.Row="1" Margin="0,20,0,0">
+
+            <TextBlock Text="Mã môn (không sửa):"/>
+            <TextBox x:Name="txtCourseId" Height="30" IsEnabled="False"/>
+
+            <TextBlock Text="Tên môn:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtName" Height="30"/>
+
+            <TextBlock Text="Tín chỉ:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtCredit" Height="30"/>
+
+            <TextBlock Text="Mô tả:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtDescription" Height="60" TextWrapping="Wrap" AcceptsReturn="True"/>
+
+            <TextBlock Text="Môn tiên quyết:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtPrereq" Height="30"/>
+
+            <Button Content="Cập nhật"
+                    Background="#0275d8"
+                    Foreground="White"
+                    Height="35"
+                    Margin="0,20,0,0"
+                    Click="BtnSave_Click"/>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

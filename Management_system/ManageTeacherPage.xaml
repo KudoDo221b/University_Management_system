@@ -1,4 +1,4 @@
-﻿<Page x:Class="Management_system.QuanLySinhVienPage"
+﻿<Page x:Class="Management_system.ManageTeacherPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Management_system"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1000"
-      Title="QuanLySinhVienPage"
+      Title="ManageTeacherPage"
       Background="White">
 
     <Grid Margin="20">

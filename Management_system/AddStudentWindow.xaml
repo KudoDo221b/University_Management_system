@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Management_system"
         mc:Ignorable="d"
-        Title="AddStudentWindow" Height="450" Width="800">
+        Title="AddStudentWindow" Height="600" Width="800">
     <Grid Margin="20">
 
         <Grid.RowDefinitions>

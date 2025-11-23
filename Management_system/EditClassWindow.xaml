@@ -1,0 +1,60 @@
+﻿<Window x:Class="Management_system.EditClassWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Management_system"
+        mc:Ignorable="d"
+        Title="EditClassWindow" Height="800" Width="800">
+    <Grid Margin="20">
+
+        <TextBlock Text="SỬA LỚP HỌC PHẦN"
+                   FontSize="22" FontWeight="Bold"
+                   Foreground="#CC0000"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
+
+        <StackPanel Margin="0,40,0,0">
+
+            <TextBlock Text="Mã lớp học phần:"/>
+            <TextBox x:Name="txtClassId" Height="30" IsEnabled="False"/>
+
+            <TextBlock Text="Mã môn:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtCourseId" Height="30"/>
+
+            <TextBlock Text="Phòng:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtRoom" Height="30"/>
+
+            <TextBlock Text="Lịch học:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtSchedule" Height="30"/>
+
+            <TextBlock Text="Thời lượng:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtDuration" Height="30"/>
+
+            <TextBlock Text="Kỳ học:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtSemester" Height="30"/>
+
+            <TextBlock Text="Năm:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtYear" Height="30"/>
+
+            <TextBlock Text="Trạng thái:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtStatus" Height="30"/>
+
+            <TextBlock Text="Số lượng:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtCapacity" Height="30"/>
+
+            <TextBlock Text="Lịch thi:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtExamSchedule" Height="30"/>
+
+            <Button Content="Cập nhật"
+                    Background="#0275d8"
+                    Foreground="White"
+                    Height="40"
+                    FontSize="16"
+                    Margin="0,20,0,0"
+                    Click="BtnSave_Click"/>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

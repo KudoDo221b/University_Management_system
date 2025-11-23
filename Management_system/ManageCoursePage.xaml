@@ -5,76 +5,80 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Management_system.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="ManageCoursePage"
       Background="White">
 
-    <Grid>
-        <Grid x:Name="grdMonHoc">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+    <Grid Margin="20">
 
-            <!-- TITLE -->
-            <TextBlock Text="QUẢN LÝ MÔN HỌC"
-                       FontSize="20" FontWeight="Bold"
-                       Foreground="#CC0000" Margin="0,0,0,10"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+        <!-- TIÊU ĐỀ -->
+        <TextBlock Text="QUẢN LÝ MÔN HỌC"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   Foreground="#CC0000"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
 
-                <!-- BUTTONS + SEARCH -->
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Button Content="Thêm môn học" Margin="0,0,5,0" Padding="10,3"/>
-                    <Button Content="Sửa" Margin="0,0,5,0" Padding="10,3"/>
-                    <Button Content="Xóa" Margin="0,0,5,0" Padding="10,3"/>
-                    <TextBox Width="200" Margin="10,0,5,0"
-                             x:Name="txtSearch" 
-                           />
-                    <Button Content="Tìm kiếm" Padding="10,3"/>
-                </StackPanel>
+        <!-- THANH CÔNG CỤ -->
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Button Content="Thêm" Width="100" Margin="0,0,10,0" Click="BtnAdd_Click"/>
+            <Button Content="Tìm kiếm" Width="100" Click="BtnSearch_Click"/>
+            <TextBox x:Name="txtSearch" Width="300" Height="30" Margin="10,0,0,0"/>
+        </StackPanel>
 
-                <!-- DATAGRID -->
-                <DataGrid Grid.Row="1" AutoGenerateColumns="False"
-                          x:Name="dgCourse"
-                          IsReadOnly="True"
-                          CanUserAddRows="False">
+        <!-- BẢNG -->
+        <DataGrid x:Name="dtgCourse"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  HeadersVisibility="Column"
+                  RowHeight="35"
+                  Margin="0,10,0,0"
+                  IsReadOnly="True">
 
-                    <DataGrid.Columns>
+            <DataGrid.Columns>
 
-                        <!-- COURSE ID -->
-                        <DataGridTextColumn Header="Mã môn"
-                                            Binding="{Binding course_id}"
-                                            Width="*"/>
+                <DataGridTextColumn Header="STT" Width="50" Binding="{Binding STT}"/>
+                <DataGridTextColumn Header="Mã môn" Width="100" Binding="{Binding course_id}"/>
+                <DataGridTextColumn Header="Tên môn" Width="200" Binding="{Binding name}"/>
+                <DataGridTextColumn Header="Số tín chỉ" Width="100" Binding="{Binding credit}"/>
+                <DataGridTextColumn Header="Mô tả" Width="300" Binding="{Binding description}"/>
+                <DataGridTextColumn Header="Môn tiên quyết" Width="120" Binding="{Binding pre_requisite}"/>
 
-                        <!-- COURSE NAME -->
-                        <DataGridTextColumn Header="Tên môn"
-                                            Binding="{Binding name}"
-                                            Width="2*"/>
+                <!-- CHI TIẾT -->
+                <DataGridTemplateColumn Header="Chi tiết" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Chi tiết"
+                                    Background="#0094FF"
+                                    Foreground="White"
+                                    Click="BtnDetail_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-                        <!-- CREDIT -->
-                        <DataGridTextColumn Header="Số tín chỉ"
-                                            Binding="{Binding credit}"
-                                            Width="*"/>
+                <!-- ACTION -->
+                <DataGridTemplateColumn Header="Action" Width="140">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Sửa" Background="#0275d8" Foreground="White"
+                                        Margin="5,0" Click="BtnEdit_Click"/>
+                                <Button Content="Xóa" Background="#d9534f" Foreground="White"
+                                        Margin="5,0" Click="BtnDelete_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-                        <!-- DESCRIPTION -->
-                        <DataGridTextColumn Header="Mô tả"
-                                            Binding="{Binding description}"
-                                            Width="3*"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
-                        <!-- PRE-REQUISITE -->
-                        <DataGridTextColumn Header="Tiên quyết"
-                                            Binding="{Binding pre_requisite}"
-                                            Width="2*"/>
-
-                    </DataGrid.Columns>
-                </DataGrid>
-
-            </Grid>
-        </Grid>
     </Grid>
 </Page>

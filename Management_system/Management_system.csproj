@@ -117,13 +117,31 @@
     <Compile Include="AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddClassWindow.xaml.cs">
+      <DependentUpon>AddClassWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddCourseWindow.xaml.cs">
+      <DependentUpon>AddCourseWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddStudentWindow.xaml.cs">
       <DependentUpon>AddStudentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddTeacherWindow.xaml.cs">
+      <DependentUpon>AddTeacherWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin.cs" />
     <Compile Include="DBHelper.cs" />
+    <Compile Include="EditClassWindow.xaml.cs">
+      <DependentUpon>EditClassWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditCourseWindow.xaml.cs">
+      <DependentUpon>EditCourseWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditStudentWindow.xaml.cs">
       <DependentUpon>EditStudentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditTeacherWindow.xaml.cs">
+      <DependentUpon>EditTeacherWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManageClassPage.xaml.cs">
       <DependentUpon>ManageClassPage.xaml</DependentUpon>
@@ -134,8 +152,8 @@
     <Compile Include="ManageStudentPage.xaml.cs">
       <DependentUpon>ManageStudentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ManageTeacher.xaml.cs">
-      <DependentUpon>ManageTeacher.xaml</DependentUpon>
+    <Compile Include="ManageTeacherPage.xaml.cs">
+      <DependentUpon>ManageTeacherPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Student.cs" />
     <Compile Include="WebBrowserPage.xaml.cs">
@@ -145,11 +163,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddClassWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddCourseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddStudentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddTeacherWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditClassWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditCourseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditStudentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditTeacherWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,7 +233,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ManageTeacher.xaml">
+    <Page Include="ManageTeacherPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

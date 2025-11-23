@@ -66,19 +66,19 @@ namespace AdminPortal
 
         private void BtnQLGiangVien_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Content = new ManageTeacherPage();
         }
 
         private void BtnQLMonHoc_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Content = new ManageCoursePage();
         }
 
         private void BtnQLLop_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Content = new ManageClassPage();
         }
-
+            
         private void BtnQLLich_Click(object sender, RoutedEventArgs e)
         {
 

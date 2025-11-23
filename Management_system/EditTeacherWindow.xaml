@@ -1,0 +1,56 @@
+﻿<Window x:Class="Management_system.EditTeacherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Management_system"
+        mc:Ignorable="d"
+        Title="EditTeacherWindow" Height="600" Width="800">
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="SỬA GIẢNG VIÊN"
+                   FontSize="22" FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Foreground="#CC0000"
+                   Margin="0,0,0,20"/>
+
+        <StackPanel Grid.Row="1">
+
+            <TextBlock Text="Mã giảng viên:"/>
+            <TextBox x:Name="txtID" Margin="0,0,0,10" IsReadOnly="True"/>
+
+            <TextBlock Text="Họ tên:"/>
+            <TextBox x:Name="txtName" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Giới tính:"/>
+            <ComboBox x:Name="cbGender" Margin="0,0,0,10">
+                <ComboBoxItem Content="Male"/>
+                <ComboBoxItem Content="Female"/>
+            </ComboBox>
+
+            <TextBlock Text="Email:"/>
+            <TextBox x:Name="txtEmail" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Số điện thoại:"/>
+            <TextBox x:Name="txtPhone" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Địa chỉ:"/>
+            <TextBox x:Name="txtAddress" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Khoa:"/>
+            <TextBox x:Name="txtFaculty" Margin="0,0,0,10"/>
+
+            <Button Content="Lưu thay đổi"
+                    Height="40"
+                    Background="#5cb85c"
+                    Foreground="White"
+                    Click="BtnSave_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
