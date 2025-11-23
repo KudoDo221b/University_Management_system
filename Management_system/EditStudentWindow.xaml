@@ -1,0 +1,57 @@
+﻿<Window x:Class="Management_system.EditStudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Management_system"
+        mc:Ignorable="d"
+        Title="EditStudentWindow" Height="450" Width="800">
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- FORM CHỈNH SỬA -->
+        <StackPanel>
+
+            <TextBlock Text="MSSV:"/>
+            <TextBox x:Name="txtID" IsReadOnly="True" Background="#EEEEEE"/>
+
+            <TextBlock Text="Họ và tên:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtName"/>
+
+            <TextBlock Text="Giới tính:" Margin="0,10,0,0"/>
+            <ComboBox x:Name="cbGender" Width="150">
+                <ComboBoxItem Content="Male"/>
+                <ComboBoxItem Content="Female"/>
+            </ComboBox>
+
+            <TextBlock Text="Email:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtEmail"/>
+
+            <TextBlock Text="Số điện thoại:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtPhone"/>
+
+            <TextBlock Text="Địa chỉ:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtAddress"/>
+
+            <TextBlock Text="Khoa:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtKhoa"/>
+
+            <TextBlock Text="Chuyên ngành:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtMajor"/>
+
+        </StackPanel>
+
+        <!-- NÚT LƯU -->
+        <Button Grid.Row="1" Content="Lưu thay đổi"
+                Width="150" Height="35"
+                HorizontalAlignment="Center"
+                Background="#28a745"
+                Foreground="White"
+                Margin="0,20,0,0"
+                Click="BtnSave_Click"/>
+    </Grid>
+</Window>

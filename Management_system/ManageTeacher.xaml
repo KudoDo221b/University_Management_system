@@ -1,0 +1,50 @@
+﻿<Page x:Class="Management_system.QuanLySinhVienPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Management_system"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="QuanLySinhVienPage"
+      Background="White">
+
+    <Grid>
+        <!-- MÀN HÌNH QUẢN LÝ GIẢNG VIÊN -->
+        <Grid x:Name="grdGiangVien">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="QUẢN LÝ GIẢNG VIÊN"
+                               FontSize="20" FontWeight="Bold"
+                               Foreground="#CC0000" Margin="0,0,0,10"/>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button Content="Thêm giảng viên" Margin="0,0,5,0" Padding="10,3"/>
+                    <Button Content="Sửa" Margin="0,0,5,0" Padding="10,3"/>
+                    <Button Content="Xóa" Margin="0,0,5,0" Padding="10,3"/>
+                    <Button Content="Phân công giảng dạy" Margin="0,0,5,0" Padding="10,3"/>
+                    <TextBox Width="200" Margin="10,0,5,0"/>
+                    <Button Content="Tìm kiếm" Padding="10,3"/>
+                </StackPanel>
+
+                <DataGrid Grid.Row="1" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã GV" Binding="{Binding MaGV}" Width="*"/>
+                        <DataGridTextColumn Header="Họ tên" Binding="{Binding HoTen}" Width="2*"/>
+                        <DataGridTextColumn Header="Khoa" Binding="{Binding Khoa}" Width="*"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="2*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
