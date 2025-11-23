@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Management_system"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="300" Width="500">
+        Title="LoginWindow" Height="300" Width="500"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F6FA">
 
-    <Grid Margin="20">
+
+    <Grid Margin="20,20,19.6,9.2">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,24 +19,53 @@
 
         <TextBlock HorizontalAlignment="Center" Text="Đăng nhập hệ thống"
                    FontSize="20" FontWeight="Bold"
-                   Foreground="DarkRed" Margin="0,0,0,20"/>
+                   Foreground="#C70000" Margin="0,0,0,20"/>
 
-        <StackPanel Grid.Row="1" Margin="0,10">
+        <StackPanel Grid.Row="1" Margin="10">
 
             <!-- USERNAME -->
-            <TextBlock Text="Tên Đăng nhập:" FontWeight="Bold"/>
-            <TextBox x:Name="txtUsername" Height="30" Margin="0,5,0,10" TextChanged="TxtUsername_TextChanged"/>
+            <TextBlock Text="Tên Đăng nhập:" FontWeight="Bold" Foreground="#444"/>
+            <TextBox x:Name="txtUsername" Height="30" Margin="0,5,0,10" TextChanged="TxtUsername_TextChanged" Background="#FAFAFA" BorderBrush="#DDDDDD" />
 
             <!-- PASSWORD -->
-            <TextBlock Text="Mật khẩu:" FontWeight="Bold"/>
-            <PasswordBox x:Name="txtPassword" Height="30" Margin="0,5,0,10"/>
+            <TextBlock Text="Mật khẩu:" FontWeight="Bold" Foreground="#444"/>
+            <PasswordBox x:Name="txtPassword" Height="30" Margin="0,5,0,10" Background="#FAFAFA" BorderBrush="#DDDDDD" />
 
             <!-- BUTTON -->
             <Button Content="Đăng nhập" Height="35"
                     Background="#C70000" Foreground="White"
                     FontWeight="Bold"
-                    Click="Login_Click"/>
-        </StackPanel>
+                    Click="Login_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#C70000"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="8" Padding="10" >
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
 
+                        <!-- Hover -->
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E00000"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#B00000"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
     </Grid>
+
 </Window>

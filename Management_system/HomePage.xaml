@@ -10,24 +10,26 @@
        Background="White">
 
     <ScrollViewer Margin="20">
-        <StackPanel Height="400">
+        <StackPanel Height="400" Margin="10">
 
             <TextBlock Text="NỘI QUY SỬ DỤNG HỆ THỐNG PORTAL"
-                       FontSize="22" FontWeight="Bold" Foreground="Red"
-                       Margin="0,0,0,10" Height="32"/>
-
-            <TextBlock TextWrapping="Wrap" Margin="5" Height="191">
-    1. Sinh viên/Học viên chịu trách nhiệm về thông tin cập nhật trên portal MyDuyTan.<LineBreak/>
-    2. Nghiêm cấm mọi hành vi phá hoại hệ thống MyDuyTan.<LineBreak/>
-    3. Trách nhiệm quản lý thông tin tài khoản, mật khẩu, Mã số Sinh viên/Học viên.<LineBreak/>
-    4. Chịu trách nhiệm nếu để lộ thông tin đăng nhập tài khoản cá nhân.<LineBreak/>
-    5. Nghiêm cấm dùng Email trường cho spam, thông tin sai lệch, đồi trụy hoặc phản động.<LineBreak/>
-    6. Không sử dụng hình ảnh trái với thuần phong mỹ tục, kinh dị, đồi trụy, phản động cho Avatar.<LineBreak/>
-    7. Kích thước Avatar không quá 130x130 pixel và dung lượng không lớn hơn 150 KB.<LineBreak/>
-    8. Sinh viên/Học viên học kỳ đầu phải tuân thủ phân bổ môn học của nhà trường.<LineBreak/>
-    9. Sinh viên/Học viên chịu trách nhiệm về đăng ký, bỏ môn, thôi môn trên MyDuyTan.<LineBreak/>
-    10. Sinh viên/Học viên chịu trách nhiệm khi xin thay đổi Cố vấn Học tập, việc thay đổi tùy theo xét duyệt.
-            </TextBlock>
+                       FontSize="24" FontWeight="Bold" Foreground="#C62828"
+                       Margin="0,0,0,16" Height="32" TextAlignment="Center"/>
+            <Border Background="#FAFAFA" Padding="15" Margin="0,10,0,0"
+                    CornerRadius="8" BorderBrush="#E0E0E0" BorderThickness="1">
+                <TextBlock TextWrapping="Wrap" FontSize="16" LineHeight="24" Foreground="#333">
+                    1. Sinh viên/Học viên chịu trách nhiệm về thông tin cập nhật trên portal MyDuyTan.<LineBreak/>
+                    2. Nghiêm cấm mọi hành vi phá hoại hệ thống MyDuyTan.<LineBreak/>
+                    3. Trách nhiệm quản lý thông tin tài khoản, mật khẩu, Mã số Sinh viên/Học viên.<LineBreak/>
+                    4. Chịu trách nhiệm nếu để lộ thông tin đăng nhập tài khoản cá nhân.<LineBreak/>
+                    5. Nghiêm cấm dùng Email trường cho spam, thông tin sai lệch, đồi trụy hoặc phản động.<LineBreak/>
+                    6. Không sử dụng hình ảnh trái với thuần phong mỹ tục, kinh dị, đồi trụy, phản động cho Avatar.<LineBreak/>
+                    7. Kích thước Avatar không quá 130x130 pixel và dung lượng không lớn hơn 150 KB.<LineBreak/>
+                    8. Sinh viên/Học viên học kỳ đầu phải tuân thủ phân bổ môn học của nhà trường.<LineBreak/>
+                    9. Sinh viên/Học viên chịu trách nhiệm về đăng ký, bỏ môn, thôi môn trên MyDuyTan.<LineBreak/>
+                    10. Sinh viên/Học viên chịu trách nhiệm khi xin thay đổi Cố vấn Học tập, việc thay đổi tùy theo xét duyệt.
+                </TextBlock>
+            </Border>
         </StackPanel>
     </ScrollViewer>
 </Page>

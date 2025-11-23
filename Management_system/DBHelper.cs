@@ -9,7 +9,7 @@ namespace Management_system
     class DBHelper
     {
         private static string connString =
-       "Server=127.0.0.1;Port=3307;Database=doanqlsv;Uid=hieu;Pwd=123456 ;";
+       "Server=127.0.0.1;Port=3307;Database=doanqlsv;Uid=hieu;Pwd=123456;";
 
         public static MySqlConnection GetConnection()
         {
