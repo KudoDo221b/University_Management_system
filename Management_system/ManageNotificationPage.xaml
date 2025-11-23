@@ -1,0 +1,73 @@
+﻿<Page x:Class="Management_system.Pages.ManageNotificationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Management_system.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ManageNotificationPage"
+      Background="White">
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="QUẢN LÝ THÔNG BÁO"
+                   FontSize="20" FontWeight="Bold"
+                   Foreground="#CC0000"
+                   HorizontalAlignment="Center"/>
+
+        <!-- Thanh công cụ -->
+        <StackPanel Orientation="Horizontal" Margin="0,20,0,10">
+            <Button Content="Tạo thông báo"
+                    Width="150" Padding="10,3"
+                    Background="#28a745" Foreground="White"
+                    Click="BtnAdd_Click"/>
+
+            <TextBox x:Name="txtSearch" Width="250" Margin="20,0"/>
+            <Button Content="Tìm kiếm" Width="100" Click="BtnSearch_Click"/>
+        </StackPanel>
+
+        <!-- DataGrid -->
+        <DataGrid x:Name="dtgNotification"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  RowHeight="35"
+                  IsReadOnly="True">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="STT" Width="50" Binding="{Binding STT}"/>
+                <DataGridTextColumn Header="Tiêu đề" Width="100" Binding="{Binding title}"/>
+                <DataGridTextColumn Header="Nội dung" Width="200" Binding="{Binding content}"/>
+                <DataGridTextColumn Header="Ngày tạo" Width="150" Binding="{Binding date}"/>
+                <DataGridTextColumn Header="Đối tượng"
+                    Binding="{Binding target}"
+                    Width="150"/>
+
+
+                <DataGridTemplateColumn Header="Action" Width="160">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                
+
+                                <Button Content="Xóa" Background="#d9534f"
+                                        Foreground="White" Margin="5"
+                                        Click="BtnDelete_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </Grid>
+
+</Page>
