@@ -5,46 +5,97 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Management_system"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="QuanLySinhVienPage"
       Background="White">
 
-    <Grid>
-        <!-- MÀN HÌNH QUẢN LÝ GIẢNG VIÊN -->
-        <Grid x:Name="grdGiangVien">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+    <Grid Margin="20">
 
-            <TextBlock Text="QUẢN LÝ GIẢNG VIÊN"
-                               FontSize="20" FontWeight="Bold"
-                               Foreground="#CC0000" Margin="0,0,0,10"/>
+        <!-- Tạo bố cục 3 hàng -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Thanh công cụ -->
+            <RowDefinition Height="Auto"/>
+            <!-- DataGrid -->
+            <RowDefinition Height="Auto"/>
+            <!-- Form nhập liệu -->
+        </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+        <!-- TIÊU ĐỀ -->
+        <TextBlock Text="QUẢN LÝ GIẢNG VIÊN"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   Foreground="#CC0000"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"
+                   Grid.Row="0"/>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Thêm" Padding="10,3" Margin="0,34,10,0.4" Width="100"
+                                Click="BtnAdd_Click"/>
+            <Button Content="Tìm kiếm" Padding="10,3" Margin="0,34,0,0.4" Width="100" Click="BtnSearch_Click"/>
+            <TextBox x:Name="txtSearch" Width="300" Height="30" Margin="0,34,0,0.4"/>
+        </StackPanel>
+        <DataGrid x:Name="dtgTeacher"
+          Grid.Row="1"
+          AutoGenerateColumns="False"
+          CanUserAddRows="False"
+          HeadersVisibility="Column"
+          RowHeight="40"
+          Margin="0,10,0,10"
+          IsReadOnly="True">
 
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Button Content="Thêm giảng viên" Margin="0,0,5,0" Padding="10,3"/>
-                    <Button Content="Sửa" Margin="0,0,5,0" Padding="10,3"/>
-                    <Button Content="Xóa" Margin="0,0,5,0" Padding="10,3"/>
-                    <Button Content="Phân công giảng dạy" Margin="0,0,5,0" Padding="10,3"/>
-                    <TextBox Width="200" Margin="10,0,5,0"/>
-                    <Button Content="Tìm kiếm" Padding="10,3"/>
-                </StackPanel>
+            <DataGrid.Columns>
 
-                <DataGrid Grid.Row="1" AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Mã GV" Binding="{Binding MaGV}" Width="*"/>
-                        <DataGridTextColumn Header="Họ tên" Binding="{Binding HoTen}" Width="2*"/>
-                        <DataGridTextColumn Header="Khoa" Binding="{Binding Khoa}" Width="*"/>
-                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="2*"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-        </Grid>
+                <!-- STT -->
+                <DataGridTextColumn Header="STT" Width="50" Binding="{Binding STT}"/>
+
+                <DataGridTextColumn Header="MGV" Width="100" Binding="{Binding teacher_id}"/>
+                <DataGridTextColumn Header="Họ tên" Width="150" Binding="{Binding full_name}"/>
+                <DataGridTextColumn Header="Giới tính" Width="100" Binding="{Binding gender}"/>
+                <DataGridTextColumn Header="Email" Width="150" Binding="{Binding email}"/>
+                <DataGridTextColumn Header="SDT" Width="100" Binding="{Binding phone}"/>
+                <DataGridTextColumn Header="Khoa" Width="150" Binding="{Binding faculty}"/>
+
+                <!-- Chi tiết -->
+                <DataGridTemplateColumn Header="Chi tiết" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Chi tiết"
+                            Background="#0094FF"
+                            Foreground="White"
+                            Padding="5"
+                            Margin="5"
+                            Click="BtnDetail_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <!-- Action -->
+                <DataGridTemplateColumn Header="Action" Width="140">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <!-- Sửa -->
+                                <Button Content="Sửa" Background="#0275d8"
+                                Foreground="White" Padding="5" Margin="5,0"
+                                Click="BtnEdit_Click"/>
+
+                                <!-- Xóa -->
+                                <Button Content="Xóa" Background="#d9534f"
+                                Foreground="White" Padding="5" Margin="5,0"
+                                Click="BtnDelete_Click"/>
+                                <!-- Thêm -->
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+
     </Grid>
 </Page>
