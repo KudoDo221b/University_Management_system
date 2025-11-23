@@ -4,6 +4,67 @@
              xmlns:local="clr-namespace:Management_system"
              StartupUri="LoginWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="GlowButton" TargetType="Button">
+            <Setter Property="Background" Value="#E8FFF8"/>
+            <Setter Property="Foreground" Value="#1A3D35"/>
+            <Setter Property="BorderBrush" Value="#7FE8C9"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect 
+                        Color="Transparent"
+                        ShadowDepth="0"
+                        BlurRadius="0"/>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="8"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Effect="{TemplateBinding Effect}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#D5FFF3"/>
+                    <Setter Property="BorderBrush" Value="#5AD8B5"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect 
+                                Color="#7FFFE8"
+                                BlurRadius="18"
+                                ShadowDepth="0"
+                                Opacity="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#C8F5E9"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect 
+                                Color="#AA0000"
+                                BlurRadius="8"
+                                ShadowDepth="0"
+                                Opacity="0.8"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
     </Application.Resources>
 </Application>
