@@ -81,12 +81,12 @@ namespace AdminPortal
             
         private void BtnQLLich_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new ManageExamSchedulePage();
+
         }
 
         private void BtnQLThongBao_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new ManageNotificationPage();
+
         }
 
         private void BtnHDSD_Click(object sender, RoutedEventArgs e)

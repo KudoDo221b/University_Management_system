@@ -146,12 +146,6 @@
     <Compile Include="AddCourseWindow.xaml.cs">
       <DependentUpon>AddCourseWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddExamScheduleWindow.xaml.cs">
-      <DependentUpon>AddExamScheduleWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AddNotificationWindow.xaml.cs">
-      <DependentUpon>AddNotificationWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AddStudentWindow.xaml.cs">
       <DependentUpon>AddStudentWindow.xaml</DependentUpon>
     </Compile>
@@ -166,9 +160,6 @@
     <Compile Include="EditCourseWindow.xaml.cs">
       <DependentUpon>EditCourseWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditExamScheduleWindow.xaml.cs">
-      <DependentUpon>EditExamScheduleWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="EditStudentWindow.xaml.cs">
       <DependentUpon>EditStudentWindow.xaml</DependentUpon>
     </Compile>
@@ -180,9 +171,6 @@
     </Compile>
     <Compile Include="ManageCoursePage.xaml.cs">
       <DependentUpon>ManageCoursePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ManageExamSchedulePage.xaml.cs">
-      <DependentUpon>ManageExamSchedulePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManageStudentPage.xaml.cs">
       <DependentUpon>ManageStudentPage.xaml</DependentUpon>
@@ -206,14 +194,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddExamScheduleWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AddNotificationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="AddStudentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,10 +207,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditCourseWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EditExamScheduleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -276,10 +252,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ManageExamSchedulePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ManageStudentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -288,7 +260,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ManageNotificationPage.xaml">
+    <Page Include="NotificationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,8 +270,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ManageNotificationPage.xaml.cs">
-      <DependentUpon>ManageNotificationPage.xaml</DependentUpon>
+    <Compile Include="NotificationPage.xaml.cs">
+      <DependentUpon>NotificationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
