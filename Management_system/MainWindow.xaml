@@ -29,25 +29,9 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center" >
                 <StackPanel.Resources>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#FFFFFF20"/>
-                        <!-- nền nhẹ -->
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="Padding" Value="12,5"/>
-                        <Setter Property="Margin" Value="5"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Setter Property="FontWeight" Value="SemiBold"/>
-
-                        <!-- hover -->
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FFFFFF40"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
+                    
                 </StackPanel.Resources>
-                <Button Content="Trang chủ" Click="BtnHome_Click"/>
+                <Button Content="Trang chủ" Style="{StaticResource GlowButton}" Height="Auto" Width="Auto" Click="BtnHome_Click"/>
                 <Button Content="Forum" Click="BtnForum_Click"/>
                 <Button Content="Email" Click="BtnEmail_Click"/>
                 <Button Content="e-Lib" Click="BtnELib_Click"/>
@@ -59,7 +43,10 @@
                         Margin="0,0,10,0">
                 <TextBlock Text="Xin chào, Admin" Foreground="White"
                            VerticalAlignment="Center" Margin="0,0,15,0"/>
-                <Button Content="Thoát" Padding="10,3" Click="BtnExit_Click"/>
+                <Button Content="Thoát" Padding="12,5"
+                        BorderThickness="0"
+                        Background="LightGray" FontWeight="Bold"
+                        Foreground="Black" Click="BtnExit_Click"/>
             </StackPanel>
         </Grid>
 
@@ -78,13 +65,13 @@
             </Grid.ColumnDefinitions>
 
             <!-- SIDEBAR ADMIN -->
-            <Border Grid.Column="0" BorderBrush="#CCCCCC" BorderThickness="0,0,1,0"
-                    Background="#F5F5F5">
+            <Border Grid.Column="0" BorderBrush="#DDDDDD" BorderThickness="0,0,1,0"
+                    Background="#FAFAFA">
                 <StackPanel Margin="10">
-                    <TextBlock Text="{Binding adminName}" Background="#CC0000" FontSize="15" FontWeight="Bold" Foreground="White"
-                               Margin="0,0,-0.4,10" Height="25"/>
+                    <TextBlock Text="{Binding adminName}" Background="#CC0000" Padding="5" FontSize="15" FontWeight="Bold" Foreground="White"
+                               Margin="0,0, 0, 12" Height="25" TextAlignment="Center"/>
 
-                    <Button Content="Thông tin tài khoản"
+                    <Button Content="Thông tin tài khoản" Style="{StaticResource GlowButton}"
                             Margin="0,0,0,5" Padding="5" Click="Account_Info"/>
 
                     <Separator Margin="0,5"/>
