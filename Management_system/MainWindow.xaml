@@ -98,6 +98,10 @@
                             Margin="0,0,0,5" Padding="5"
                             Click="BtnQLLich_Click"/>
 
+                    <Button Content="Quản lý Học phí"
+                            Margin="0,0,0,5" Padding="5"
+                            Click="BtnQLHocPhi_Click"/>
+
                     <Separator Margin="0,5"/>
 
                     <Button Content="Gửi thông báo"

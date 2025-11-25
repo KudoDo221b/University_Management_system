@@ -1,13 +1,12 @@
-﻿<Page x:Class="Management_system.Pages.ManageClassPage"
+﻿<Page x:Class="Management_system.ManageTuitionPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:fa="http://schemas.fontawesome.io/icons/"
-      xmlns:local="clr-namespace:Management_system.Pages"
+      xmlns:local="clr-namespace:Management_system"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1000"
-      Title="ManageClassPage" 
+      Title="ManageTuitionPage"
       Background="White">
 
     <Grid Margin="10">
@@ -26,7 +25,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="QUẢN LÝ LỚP HỌC PHẦN"
+                <TextBlock Text="QUẢN LÝ HỌC PHÍ"
                    FontSize="28"
                    FontWeight="Bold"
                    Foreground="#B00020"
@@ -36,15 +35,13 @@
 
                 <!-- Thanh công cụ -->
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <Button Content="Thêm" Width="100" Padding="10,3" Margin="0,0,10,0"
-                    Background="LightBlue" BorderThickness="0" Cursor="Hand" Click="BtnAdd_Click"/>
                     <Button Content="Tìm kiếm" Width="100" Padding="10,3"
                     Background="LightBlue" BorderThickness="0" Cursor="Hand" Click="BtnSearch_Click"/>
                     <TextBox x:Name="txtSearch" Width="697" Height="30" Margin="10,0,0,0.4"/>
                 </StackPanel>
 
                 <!-- DataGrid -->
-                <DataGrid x:Name="dtgClass"
+                <DataGrid x:Name="dtgTuition"
                   Grid.Row="2"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
@@ -56,24 +53,16 @@
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="STT" Width="30" Binding="{Binding STT}"/>
-                        <DataGridTextColumn Header="Mã lớp" Width="80" Binding="{Binding courseClass_id}"/>
-                        <DataGridTextColumn Header="Mã môn" Width="80" Binding="{Binding course_id}"/>
-                        <DataGridTextColumn Header="Phòng" Width="60" Binding="{Binding room}"/>
-                        <DataGridTextColumn Header="Lịch học" Width="150" Binding="{Binding learnSchedule}"/>
-                        <DataGridTextColumn Header="Thời lượng" Width="80" Binding="{Binding duration}"/>
-                        <DataGridTextColumn Header="Kỳ" Width="60" Binding="{Binding semester}"/>
-                        <DataGridTextColumn Header="Năm" Width="80" Binding="{Binding year}"/>
-                        <DataGridTextColumn Header="Trạng thái" Width="120" Binding="{Binding status}"/>
-                        <DataGridTextColumn Header="Số lượng" Width="80" Binding="{Binding capacity}"/>
-                        <DataGridTextColumn Header="Lịch thi" Width="120" Binding="{Binding examSchedule}"/>
-
-                        <!-- Chi tiết -->
-                        <DataGridTemplateColumn Header="Chi tiết" Width="100">
+                        <DataGridTextColumn Header="MSSV" Width="*" Binding="{Binding student_id}"/>
+                        <DataGridTextColumn Header="Họ tên sinh viên" Width="*" Binding="{Binding full_name}"/>
+                        <DataGridTextColumn Header="Trạng thái" Width="*" Binding="{Binding tuitionStatus}"/>
+                        <DataGridTemplateColumn Header="Hóa đơn" Width="*" IsReadOnly="False">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Chi tiết" Background="#0094FF" Foreground="White"
-                                    Padding="5" Margin="5"
-                                    Click="BtnDetail_Click"/>
+                                    <!-- Ảnh nhỏ -->
+                                    <Button Click="Bill_Click" Padding="0" BorderThickness="0" Background="Transparent">
+                                        <Image Width="40" Height="40" Stretch="Uniform" Source="{Binding bill_url}" />
+                                    </Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -83,15 +72,17 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Content="Sửa" Background="#0275d8"
+                                        <Button Content="Xác nhận" Background="LightGreen"
                                         Foreground="White" Padding="5"
                                         Margin="5,0"
-                                        Click="BtnEdit_Click"/>
+                                        Tag="{Binding STT}"
+                                        Click="BtnConfirm_Click"/>
 
-                                        <Button Content="Xóa" Background="#d9534f"
+                                        <Button Content="Từ chối" Background="Salmon"
                                         Foreground="White" Padding="5"
                                         Margin="5,0"
-                                        Click="BtnDelete_Click"/>
+                                        Tag="{Binding STT}"        
+                                        Click="BtnRefuse_Click"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

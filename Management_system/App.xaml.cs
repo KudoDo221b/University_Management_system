@@ -13,5 +13,8 @@ namespace Management_system
     /// </summary>
     public partial class App : Application
     {
+        public static string AdminID { get; set; } = "";
+        public static string AdminName { get; set; }
+
     }
 }

@@ -15,5 +15,5 @@ namespace Management_system
         {
             return new MySqlConnection(connString);
         }
-        }
     }
+}

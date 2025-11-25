@@ -51,6 +51,10 @@ namespace Management_system
                         Admin.email = rd["email"].ToString();
                         Admin.phone = rd["phone"].ToString();
                         Admin.address = rd["address"].ToString();
+
+                        //Lưu vào biến cục bộ App
+                        App.AdminID = Admin.adminId;
+                        App.AdminName = Admin.adminName;
                         // Đăng nhập thành công
                         MainWindow home = new MainWindow();
                         home.Show();

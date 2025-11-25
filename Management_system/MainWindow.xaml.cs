@@ -93,5 +93,10 @@ namespace AdminPortal
         {
 
         }
+
+        private void BtnQLHocPhi_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new ManageTuitionPage();
+        }
     }
 }
