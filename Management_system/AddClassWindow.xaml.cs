@@ -48,36 +48,77 @@ namespace Management_system
             {
                 conn.Open();
 
-                string sql = @"
-                    INSERT INTO courseclass
-                    (courseClass_id, course_id, room, learnSchedule, duration,
-                     semester, year, status, capacity, examSchedule)
-                    VALUES
-                    (@id, @course, @room, @learn, @duration,
-                     @semester, @year, @status, @capacity, @exam)";
-
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.Parameters.AddWithValue("@course", course);
-                cmd.Parameters.AddWithValue("@room", room);
-                cmd.Parameters.AddWithValue("@learn", learn);
-                cmd.Parameters.AddWithValue("@duration", duration);
-                cmd.Parameters.AddWithValue("@semester", semester);
-                cmd.Parameters.AddWithValue("@year", year);
-                cmd.Parameters.AddWithValue("@status", status);
-                cmd.Parameters.AddWithValue("@capacity", capacity);
-                cmd.Parameters.AddWithValue("@exam", exam);
-
                 try
                 {
-                    cmd.ExecuteNonQuery();
+                    // 1️⃣ Kiểm tra course_id tồn tại
+                    using (MySqlCommand checkCmd = new MySqlCommand(
+                        "SELECT COUNT(*) FROM course WHERE course_id=@course", conn))
+                    {
+                        checkCmd.Parameters.AddWithValue("@course", course);
+                        int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+                        if (count == 0)
+                        {
+                            MessageBox.Show("Mã môn học không tồn tại trong hệ thống!");
+                            return;
+                        }
+                    }
+
+                    // 2️⃣ Thêm lớp học phần vào courseclass
+                    string sqlClass = @"
+                        INSERT INTO courseclass
+                        (courseClass_id, course_id, room, learnSchedule, duration,
+                         semester, year, status, capacity)
+                        VALUES
+                        (@id, @course, @room, @learn, @duration,
+                         @semester, @year, @status, @capacity)";
+
+                    using (MySqlCommand cmdClass = new MySqlCommand(sqlClass, conn))
+                    {
+                        cmdClass.Parameters.AddWithValue("@id", id);
+                        cmdClass.Parameters.AddWithValue("@course", course);
+                        cmdClass.Parameters.AddWithValue("@room", room);
+                        cmdClass.Parameters.AddWithValue("@learn", learn);
+                        cmdClass.Parameters.AddWithValue("@duration", duration);
+                        cmdClass.Parameters.AddWithValue("@semester", semester);
+                        cmdClass.Parameters.AddWithValue("@year", year);
+                        cmdClass.Parameters.AddWithValue("@status", status);
+                        cmdClass.Parameters.AddWithValue("@capacity", capacity);
+
+                        cmdClass.ExecuteNonQuery();
+                    }
+
+                    // 3️⃣ Nếu có lịch thi, thêm vào examSchedule
+                    if (!string.IsNullOrEmpty(exam))
+                    {
+                        string sqlExam = @"
+                            INSERT INTO examSchedule
+                            (exam_id, courseClass_id, schedule)
+                            VALUES
+                            (@examId, @classId, @schedule)";
+
+                        using (MySqlCommand cmdExam = new MySqlCommand(sqlExam, conn))
+                        {
+                            // Tạo exam_id tự động (UUID) để tránh lỗi 'Field 'exam_id' doesn't have a default value'
+                            string examId = Guid.NewGuid().ToString();
+
+                            cmdExam.Parameters.AddWithValue("@examId", examId);
+                            cmdExam.Parameters.AddWithValue("@classId", id);
+                            cmdExam.Parameters.AddWithValue("@schedule", exam);
+
+                            cmdExam.ExecuteNonQuery();
+                        }
+                    }
+
                     MessageBox.Show("Thêm lớp học phần thành công!");
                     this.Close();
                 }
-                catch
+                catch (MySqlException ex)
                 {
-                    MessageBox.Show("Lỗi: Mã lớp bị trùng hoặc dữ liệu không hợp lệ!");
+                    MessageBox.Show("Lỗi MySQL: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message);
                 }
             }
         }

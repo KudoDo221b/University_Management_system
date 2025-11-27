@@ -33,7 +33,11 @@ namespace Management_system.Pages
             using (MySqlConnection conn = DBHelper.GetConnection())
             {
                 conn.Open();
-                string query = "SELECT * FROM courseclass";
+                string query = @"SELECT cc.courseClass_id, cc.course_id, cc.room, cc.learnSchedule,
+                                        cc.duration, cc.semester, cc.year, cc.status, cc.capacity, es.schedule
+                                        FROM courseclass cc
+                                        LEFT JOIN examschedule es
+                                        ON cc.courseClass_id = es.courseClass_id;";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -69,7 +73,7 @@ namespace Management_system.Pages
                 $"Năm: {row["year"]}\n" +
                 $"Trạng thái: {row["status"]}\n" +
                 $"Sức chứa: {row["capacity"]}\n" +
-                $"Lịch thi: {row["examSchedule"]}",
+                $"Lịch thi: {row["schedule"]}",
                 "Chi tiết lớp học phần",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information
@@ -92,7 +96,7 @@ namespace Management_system.Pages
                 cmd.Parameters.AddWithValue("@id", row["courseClass_id"]);
                 cmd.ExecuteNonQuery();
             }
-
+            MessageBox.Show("Đã xóa lớp học phần thành công");
             LoadClasses();
         }
 

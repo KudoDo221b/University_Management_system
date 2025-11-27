@@ -35,7 +35,13 @@ namespace Management_system
             using (MySqlConnection conn = DBHelper.GetConnection())
             {
                 conn.Open();
-                string sql = "SELECT * FROM courseclass WHERE courseClass_id=@id";
+                string sql = @"
+                    SELECT cc.courseClass_id, cc.course_id, cc.room, cc.learnSchedule,
+                           cc.duration, cc.semester, cc.year, cc.status, cc.capacity,
+                           es.schedule
+                    FROM courseclass cc
+                    LEFT JOIN examschedule es ON cc.courseClass_id = es.courseClass_id
+                    WHERE cc.courseClass_id=@id";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@id", classId);
 
@@ -55,7 +61,7 @@ namespace Management_system
                     txtYear.Text = row["year"].ToString();
                     txtStatus.Text = row["status"].ToString();
                     txtCapacity.Text = row["capacity"].ToString();
-                    txtExamSchedule.Text = row["examSchedule"].ToString();
+                    txtExamSchedule.Text = row["schedule"].ToString();
                 }
             }
         }
@@ -65,7 +71,19 @@ namespace Management_system
             using (MySqlConnection conn = DBHelper.GetConnection())
             {
                 conn.Open();
-                string sql = @"
+                // 1️⃣ Kiểm tra course_id có tồn tại trong bảng course không
+                string courseId = txtCourseId.Text.Trim();
+                using (MySqlCommand checkCmd = new MySqlCommand("SELECT COUNT(*) FROM course WHERE course_id=@course", conn))
+                {
+                    checkCmd.Parameters.AddWithValue("@course", courseId);
+                    int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+                    if (count == 0)
+                    {
+                        MessageBox.Show("Mã môn học không tồn tại trong hệ thống!");
+                        return;
+                    }
+                }
+                    string sql = @"
                     UPDATE courseclass SET
                         course_id=@course,
                         room=@room,
@@ -74,25 +92,37 @@ namespace Management_system
                         semester=@semester,
                         year=@year,
                         status=@status,
-                        capacity=@capacity,
-                        examSchedule=@exam
+                        capacity=@capacity
                     WHERE courseClass_id=@id";
 
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                using (MySqlCommand cmdClass = new MySqlCommand(sql, conn))
+                {
+                    cmdClass.Parameters.AddWithValue("@id", classId);
+                    cmdClass.Parameters.AddWithValue("@course", courseId);
+                    cmdClass.Parameters.AddWithValue("@room", txtRoom.Text.Trim());
+                    cmdClass.Parameters.AddWithValue("@learn", txtSchedule.Text.Trim());
+                    cmdClass.Parameters.AddWithValue("@duration", txtDuration.Text.Trim());
+                    cmdClass.Parameters.AddWithValue("@semester", txtSemester.Text.Trim());
+                    cmdClass.Parameters.AddWithValue("@year", txtYear.Text.Trim());
+                    cmdClass.Parameters.AddWithValue("@status", txtStatus.Text.Trim());
+                    cmdClass.Parameters.AddWithValue("@capacity", txtCapacity.Text.Trim());
 
-                cmd.Parameters.AddWithValue("@id", classId);
-                cmd.Parameters.AddWithValue("@course", txtCourseId.Text.Trim());
-                cmd.Parameters.AddWithValue("@room", txtRoom.Text.Trim());
-                cmd.Parameters.AddWithValue("@learn", txtSchedule.Text.Trim());
-                cmd.Parameters.AddWithValue("@duration", txtDuration.Text.Trim());
-                cmd.Parameters.AddWithValue("@semester", txtSemester.Text.Trim());
-                cmd.Parameters.AddWithValue("@year", txtYear.Text.Trim());
-                cmd.Parameters.AddWithValue("@status", txtStatus.Text.Trim());
-                cmd.Parameters.AddWithValue("@capacity", txtCapacity.Text.Trim());
-                cmd.Parameters.AddWithValue("@exam", txtExamSchedule.Text.Trim());
+                    cmdClass.ExecuteNonQuery();
+                }
 
-                cmd.ExecuteNonQuery();
+                string examSchedule = txtExamSchedule.Text.Trim();
+                if (!string.IsNullOrEmpty(examSchedule))
+                {
+                    string sqlExam = @"UPDATE examSchedule SET schedule=@exam
+                                        WHERE courseClass_id=@id";
 
+                    using (MySqlCommand cmdExam = new MySqlCommand(sqlExam, conn))
+                    {
+                        cmdExam.Parameters.AddWithValue("@id", classId);
+                        cmdExam.Parameters.AddWithValue("@exam", examSchedule);
+                        cmdExam.ExecuteNonQuery();
+                    }
+                }
                 MessageBox.Show("Cập nhật lớp học phần thành công!");
                 this.Close();
             }

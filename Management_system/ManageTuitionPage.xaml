@@ -37,7 +37,16 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <Button Content="Tìm kiếm" Width="100" Padding="10,3"
                     Background="LightBlue" BorderThickness="0" Cursor="Hand" Click="BtnSearch_Click"/>
-                    <TextBox x:Name="txtSearch" Width="697" Height="30" Margin="10,0,0,0.4"/>
+                    <TextBox x:Name="txtSearch" Width="805" Height="30" Margin="10,0,0,0.4" RenderTransformOrigin="0.5,0.5">
+                        <TextBox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.148"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBox.RenderTransform>
+                    </TextBox>
                 </StackPanel>
 
                 <!-- DataGrid -->
@@ -53,7 +62,7 @@
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="STT" Width="30" Binding="{Binding STT}"/>
-                        <DataGridTextColumn Header="MSSV" Width="*" Binding="{Binding student_id}"/>
+                        <DataGridTextColumn Header="MSSV" Width="100" Binding="{Binding student_id}"/>
                         <DataGridTextColumn Header="Họ tên sinh viên" Width="*" Binding="{Binding full_name}"/>
                         <DataGridTextColumn Header="Trạng thái" Width="*" Binding="{Binding tuitionStatus}"/>
                         <DataGridTemplateColumn Header="Hóa đơn" Width="*" IsReadOnly="False">
@@ -68,19 +77,19 @@
                         </DataGridTemplateColumn>
 
                         <!-- Action -->
-                        <DataGridTemplateColumn Header="Action" Width="100">
+                        <DataGridTemplateColumn Header="Action" Width="200">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                         <Button Content="Xác nhận" Background="LightGreen"
                                         Foreground="White" Padding="5"
-                                        Margin="5,0"
+                                        Margin="5,5" Width="80"
                                         Tag="{Binding STT}"
                                         Click="BtnConfirm_Click"/>
 
                                         <Button Content="Từ chối" Background="Salmon"
                                         Foreground="White" Padding="5"
-                                        Margin="5,0"
+                                        Margin="5,5" Width="80"
                                         Tag="{Binding STT}"        
                                         Click="BtnRefuse_Click"/>
                                     </StackPanel>
