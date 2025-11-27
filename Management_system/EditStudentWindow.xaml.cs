@@ -54,7 +54,7 @@ namespace Management_system
                 txtMajor.Text = r["major"].ToString();
 
                 // Giới tính
-                if (r["gender"].ToString() == "Male")
+                if (r["gender"].ToString() == "Nam")
                     cbGender.SelectedIndex = 0;
                 else
                     cbGender.SelectedIndex = 1;

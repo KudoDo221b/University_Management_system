@@ -9,7 +9,7 @@
       Title="ManageTuitionPage"
       Background="White">
 
-    <Grid Margin="10">
+    <Grid Margin="0">
         <Border Background="White"
                 CornerRadius="15"
                 Padding="30"

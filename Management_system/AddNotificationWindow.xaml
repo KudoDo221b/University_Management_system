@@ -6,51 +6,63 @@
         xmlns:local="clr-namespace:Management_system"
         mc:Ignorable="d"
         Title="AddNotificationWindow" Height="450" Width="800">
-    <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <Grid Margin="0">
+        <Border Background="White"
+                CornerRadius="15"
+                Padding="30"
+                BorderBrush="#E0E0E0"
+                BorderThickness="1">
+            <Border.Effect>
+                <DropShadowEffect Color="#000000" BlurRadius="18" ShadowDepth="3" Opacity="0.22"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <!-- Title -->
-        <TextBlock Text="Tạo thông báo"
-                   FontSize="22" FontWeight="Bold"
-                   Foreground="#CC0000"
+                <!-- Title -->
+                <TextBlock Text="TẠO THÔNG BÁO"
+                   FontSize="28" FontWeight="Bold"
+                   Foreground="#B00020"
                    HorizontalAlignment="Center"/>
 
-        <!-- Loại người nhận -->
-        <StackPanel Grid.Row="1" Margin="0,20,0,0">
-            <TextBlock Text="Đối tượng nhận:"/>
-            <ComboBox x:Name="cbTarget" Height="30" Width="200">
-                <ComboBoxItem Content="Tất cả"/>
-                <ComboBoxItem Content="Sinh viên"/>
-                <ComboBoxItem Content="Giảng viên"/>
-            </ComboBox>
-        </StackPanel>
+                <!-- Loại người nhận -->
+                <StackPanel Grid.Row="1" Margin="0,20,0,0">
+                    <TextBlock Text="Đối tượng nhận:"/>
+                    <ComboBox x:Name="cbTarget" Height="30" Width="200">
+                        <ComboBoxItem Content="Tất cả"/>
+                        <ComboBoxItem Content="Sinh viên"/>
+                        <ComboBoxItem Content="Giảng viên"/>
+                    </ComboBox>
+                </StackPanel>
 
-        <!-- Tiêu đề -->
-        <StackPanel Grid.Row="2" Margin="0,10,0,0">
-            <TextBlock Text="Tiêu đề:"/>
-            <TextBox x:Name="txtTitle" Height="30"/>
-        </StackPanel>
+                <!-- Tiêu đề -->
+                <StackPanel Grid.Row="2" Margin="0,10,0,0">
+                    <TextBlock Text="Tiêu đề:"/>
+                    <TextBox x:Name="txtTitle" Height="30"/>
+                </StackPanel>
 
-        <!-- Nội dung -->
-        <StackPanel Grid.Row="3" Margin="0,10,0,0">
-            <TextBlock Text="Nội dung:"/>
-            <TextBox x:Name="txtContent"
+                <!-- Nội dung -->
+                <StackPanel Grid.Row="3" Margin="0,10,0,0">
+                    <TextBlock Text="Nội dung:"/>
+                    <TextBox x:Name="txtContent"
                      Height="150"
                      AcceptsReturn="True"
                      TextWrapping="Wrap"/>
-        </StackPanel>
+                </StackPanel>
 
-        <!-- Nút gửi -->
-        <Button Grid.Row="4"
+                <!-- Nút gửi -->
+                <Button Grid.Row="4"
                 Content="Gửi thông báo"
                 Background="#CC0000" Foreground="White"
                 Height="40"
                 Click="BtnSend_Click"/>
+            </Grid>
+        </Border>
+        
     </Grid>
 </Window>

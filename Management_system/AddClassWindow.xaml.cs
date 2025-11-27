@@ -36,7 +36,6 @@ namespace Management_system
             string year = txtYear.Text.Trim();
             string status = txtStatus.Text.Trim();
             string capacity = txtCapacity.Text.Trim();
-            string exam = txtExamSchedule.Text.Trim();
 
             if (id == "" || course == "")
             {
@@ -62,7 +61,18 @@ namespace Management_system
                             return;
                         }
                     }
+                    using (MySqlCommand checkClassCmd = new MySqlCommand(
+                        "SELECT COUNT(*) FROM courseclass WHERE courseClass_id=@id", conn))
+                    {
+                        checkClassCmd.Parameters.AddWithValue("@id", id);
+                        int classCount = Convert.ToInt32(checkClassCmd.ExecuteScalar());
 
+                        if (classCount > 0)
+                        {
+                            MessageBox.Show("Mã lớp học phần đã tồn tại, vui lòng nhập mã khác!");
+                            return;
+                        }
+                    }
                     // 2️⃣ Thêm lớp học phần vào courseclass
                     string sqlClass = @"
                         INSERT INTO courseclass
@@ -86,36 +96,11 @@ namespace Management_system
 
                         cmdClass.ExecuteNonQuery();
                     }
-
-                    // 3️⃣ Nếu có lịch thi, thêm vào examSchedule
-                    if (!string.IsNullOrEmpty(exam))
-                    {
-                        string sqlExam = @"
-                            INSERT INTO examSchedule
-                            (exam_id, courseClass_id, schedule)
-                            VALUES
-                            (@examId, @classId, @schedule)";
-
-                        using (MySqlCommand cmdExam = new MySqlCommand(sqlExam, conn))
-                        {
-                            // Tạo exam_id tự động (UUID) để tránh lỗi 'Field 'exam_id' doesn't have a default value'
-                            string examId = Guid.NewGuid().ToString();
-
-                            cmdExam.Parameters.AddWithValue("@examId", examId);
-                            cmdExam.Parameters.AddWithValue("@classId", id);
-                            cmdExam.Parameters.AddWithValue("@schedule", exam);
-
-                            cmdExam.ExecuteNonQuery();
-                        }
-                    }
-
                     MessageBox.Show("Thêm lớp học phần thành công!");
                     this.Close();
+
                 }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Lỗi MySQL: " + ex.Message);
-                }
+                
                 catch (Exception ex)
                 {
                     MessageBox.Show("Lỗi: " + ex.Message);

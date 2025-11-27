@@ -3,82 +3,150 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
       xmlns:local="clr-namespace:Management_system.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       Title="ManageCoursePage"
       Background="White">
 
-    <Grid Margin="20">
+    <Grid Margin="0">
+        <Border Background="White"
+                CornerRadius="15"
+                Padding="30"
+                BorderBrush="#E0E0E0"
+                BorderThickness="1">
+            <Border.Effect>
+                <DropShadowEffect Color="#000000" BlurRadius="18" ShadowDepth="3" Opacity="0.22"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- TIÊU ĐỀ -->
-        <TextBlock Text="QUẢN LÝ MÔN HỌC"
+                <!-- TIÊU ĐỀ -->
+                <TextBlock Text="QUẢN LÝ MÔN HỌC"
                    FontSize="26"
                    FontWeight="Bold"
-                   Foreground="#CC0000"
+                   Foreground="#B00020"
                    HorizontalAlignment="Center"
+                   Grid.Row="0"        
                    Margin="0,0,0,20"/>
 
-        <!-- THANH CÔNG CỤ -->
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <Button Content="Thêm" Width="100" Margin="0,0,10,0" Click="BtnAdd_Click"/>
-            <Button Content="Tìm kiếm" Width="100" Click="BtnSearch_Click"/>
-            <TextBox x:Name="txtSearch" Width="300" Height="30" Margin="10,0,0,0"/>
-        </StackPanel>
+                <!-- THANH CÔNG CỤ -->
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
 
-        <!-- BẢNG -->
-        <DataGrid x:Name="dtgCourse"
+                    <Button Width="110" Padding="10,3" Margin="0,0,10,0"
+                            Background="#2196F3" Foreground="White"
+                            Cursor="Hand" BorderThickness="0"
+                            Click="BtnAdd_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome Icon="Plus" Width="14" Height="14" Margin="0,0,5,0"/>
+                            <TextBlock Text="Thêm"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Width="110" Padding="10,3"
+                            Background="#4CAF50" Foreground="White"
+                            Cursor="Hand" BorderThickness="0"
+                            Click="BtnSearch_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome Icon="Search" Width="14" Height="14" Margin="0,0,5,0"/>
+                            <TextBlock Text="Tìm kiếm"/>
+                        </StackPanel>
+                    </Button>
+
+                    <TextBox x:Name="txtSearch" Width="550" Height="32"
+                                Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <!-- BẢNG -->
+                <DataGrid x:Name="dtgCourse"
                   Grid.Row="2"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
+                  HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto"
+                  ColumnWidth="Auto"
+                  HorizontalAlignment="Left"
+                  HorizontalContentAlignment="Left"
+                  
                   HeadersVisibility="Column"
                   RowHeight="35"
                   Margin="0,10,0,0"
                   IsReadOnly="True">
 
-            <DataGrid.Columns>
+                    <DataGrid.Columns>
 
-                <DataGridTextColumn Header="STT" Width="50" Binding="{Binding STT}"/>
-                <DataGridTextColumn Header="Mã môn" Width="100" Binding="{Binding course_id}"/>
-                <DataGridTextColumn Header="Tên môn" Width="200" Binding="{Binding name}"/>
-                <DataGridTextColumn Header="Số tín chỉ" Width="100" Binding="{Binding credit}"/>
-                <DataGridTextColumn Header="Mô tả" Width="300" Binding="{Binding description}"/>
-                <DataGridTextColumn Header="Môn tiên quyết" Width="120" Binding="{Binding pre_requisite}"/>
+                        <DataGridTextColumn Header="STT" Width="50" Binding="{Binding STT}"/>
+                        <DataGridTextColumn Header="Mã môn" Width="100" Binding="{Binding course_id}"/>
+                        <DataGridTextColumn Header="Tên môn" Width="200" Binding="{Binding name}"/>
+                        <DataGridTextColumn Header="Số tín chỉ" Width="100" Binding="{Binding credit}"/>
+                        <DataGridTextColumn Header="Mô tả" Width="300" Binding="{Binding description}"/>
+                        <DataGridTextColumn Header="Môn tiên quyết" Width="120" Binding="{Binding pre_requisite}"/>
 
-                <!-- CHI TIẾT -->
-                <DataGridTemplateColumn Header="Chi tiết" Width="100">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Chi tiết"
-                                    Background="#0094FF"
-                                    Foreground="White"
-                                    Click="BtnDetail_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                        <!-- CHI TIẾT -->
+                        <DataGridTemplateColumn Header="Chi tiết" Width="95">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Background="#0094FF"
+                                            Foreground="White"
+                                            Padding="5,2"
+                                            Margin="5"
+                                            Cursor="Hand"
+                                            Click="BtnDetail_Click"
+                                            BorderThickness="0"
+                                            HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <fa:FontAwesome Icon="InfoCircle" Width="16" Height="16" Margin="0,0,5,0"/>
+                                            <TextBlock Text="Chi tiết"/>
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
-                <!-- ACTION -->
-                <DataGridTemplateColumn Header="Action" Width="140">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Content="Sửa" Background="#0275d8" Foreground="White"
-                                        Margin="5,0" Click="BtnEdit_Click"/>
-                                <Button Content="Xóa" Background="#d9534f" Foreground="White"
-                                        Margin="5,0" Click="BtnDelete_Click"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                        <!-- ACTION -->
+                        <DataGridTemplateColumn Header="Action" Width="140">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Center">
 
-            </DataGrid.Columns>
-        </DataGrid>
+                                        <!-- Sửa -->
+                                        <Button Background="#0275d8"
+                                                Foreground="White"
+                                                Padding="5,2"
+                                                Margin="5,0"
+                                                Click="BtnEdit_Click"
+                                                Cursor="Hand"
+                                                BorderThickness="0">
+                                            <fa:FontAwesome Icon="Edit" Width="16" Height="16"/>
+                                        </Button>
 
+                                        <!-- Xóa -->
+                                        <Button Background="#d9534f"
+                                                Foreground="White"
+                                                Padding="5,2"
+                                                Margin="5,0"
+                                                Click="BtnDelete_Click"
+                                                Cursor="Hand"
+                                                BorderThickness="0">
+                                            <fa:FontAwesome Icon="Trash" Width="16" Height="16"/>
+                                        </Button>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+        </Border>
+        
     </Grid>
 </Page>

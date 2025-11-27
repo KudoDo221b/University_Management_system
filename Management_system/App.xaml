@@ -5,7 +5,7 @@
              StartupUri="LoginWindow.xaml">
     <Application.Resources>
         <Style x:Key="GlowButton" TargetType="Button">
-            <Setter Property="Background" Value="#E8FFF8"/>
+            
             <Setter Property="Foreground" Value="#1A3D35"/>
             <Setter Property="BorderBrush" Value="#7FE8C9"/>
             <Setter Property="BorderThickness" Value="2"/>

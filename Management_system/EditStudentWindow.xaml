@@ -6,52 +6,114 @@
         xmlns:local="clr-namespace:Management_system"
         mc:Ignorable="d"
         Title="EditStudentWindow" Height="600" Width="800">
-    <Grid Margin="20">
+    <Grid Margin="0">
+        <Border Background="White"
+                CornerRadius="15"
+                Padding="30"
+                BorderBrush="#E0E0E0"
+                BorderThickness="1">
+            <Border.Effect>
+                <DropShadowEffect Color="#000000" BlurRadius="18" ShadowDepth="3" Opacity="0.22"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+                </Grid.RowDefinitions>
+                <TextBlock Text="CẬP NHẬT THÔNG TIN SINH VIÊN"
+                   FontSize="28" FontWeight="Bold"
+                   Foreground="#B00020" Grid.Row="0"
+                   HorizontalAlignment="Center"/>
+                <!-- FORM CHỈNH SỬA -->
+                <StackPanel Grid.Row="1" Margin="0,10,0,0" VerticalAlignment="Top">
+                    <StackPanel.Resources>
 
-        <!-- FORM CHỈNH SỬA -->
-        <StackPanel>
+                        <!-- Label -->
+                        <Style TargetType="TextBlock" x:Key="LabelStyle">
+                            <Setter Property="Margin" Value="0,10,0,4"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Foreground" Value="#333"/>
+                        </Style>
 
-            <TextBlock Text="MSSV:"/>
-            <TextBox x:Name="txtID" IsReadOnly="True" Background="#EEEEEE"/>
+                        <!-- Input -->
+                        <Style TargetType="TextBox" x:Key="InputStyle">
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="Padding" Value="6,4"/>
+                            <Setter Property="Background" Value="#FAFAFA"/>
+                            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        </Style>
 
-            <TextBlock Text="Họ và tên:" Margin="0,10,0,0"/>
-            <TextBox x:Name="txtName"/>
+                        <!-- Button -->
+                        <Style TargetType="Button" x:Key="SaveButton">
+                            <Setter Property="Height" Value="35"/>
+                            <Setter Property="FontSize" Value="17"/>
+                            <Setter Property="Background" Value="#0275d8"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Margin" Value="0,20,0,0"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="8"
+                                                Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
 
-            <TextBlock Text="Giới tính:" Margin="0,10,0,0"/>
-            <ComboBox x:Name="cbGender" Width="150">
-                <ComboBoxItem Content="Male"/>
-                <ComboBoxItem Content="Female"/>
-            </ComboBox>
+                            <!-- Hover -->
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#2ECC71"/>
+                                </Trigger>
+                            </Style.Triggers>
 
-            <TextBlock Text="Email:" Margin="0,10,0,0"/>
-            <TextBox x:Name="txtEmail"/>
+                        </Style>
 
-            <TextBlock Text="Số điện thoại:" Margin="0,10,0,0"/>
-            <TextBox x:Name="txtPhone"/>
+                    </StackPanel.Resources>
 
-            <TextBlock Text="Địa chỉ:" Margin="0,10,0,0"/>
-            <TextBox x:Name="txtAddress"/>
+                    <TextBlock Text="MSSV:" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="txtID" Style="{StaticResource InputStyle}" IsReadOnly="True" Background="#EEEEEE"/>
 
-            <TextBlock Text="Khoa:" Margin="0,10,0,0"/>
-            <TextBox x:Name="txtKhoa"/>
+                    <TextBlock Text="Họ và tên:" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="txtName" Style="{StaticResource InputStyle}"/>
 
-            <TextBlock Text="Chuyên ngành:" Margin="0,10,0,0"/>
-            <TextBox x:Name="txtMajor"/>
+                    <TextBlock Text="Giới tính:" Style="{StaticResource LabelStyle}"/>
+                    <ComboBox x:Name="cbGender" Height="35" Width="150">
+                        <ComboBoxItem Content="Nam"/>
+                        <ComboBoxItem Content="Nữ"/>
+                    </ComboBox>
 
-        </StackPanel>
+                    <TextBlock Text="Email:" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="txtEmail" Style="{StaticResource InputStyle}"/>
 
-        <!-- NÚT LƯU -->
-        <Button Grid.Row="1" Content="Lưu thay đổi"
-                Width="150" Height="35"
-                HorizontalAlignment="Center"
-                Background="#28a745"
-                Foreground="White"
-                Margin="0,20,0,0"
-                Click="BtnSave_Click"/>
+                    <TextBlock Text="Số điện thoại:" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="txtPhone" Style="{StaticResource InputStyle}"/>
+
+                    <TextBlock Text="Địa chỉ:" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="txtAddress" Style="{StaticResource InputStyle}"/>
+
+                    <TextBlock Text="Khoa:" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="txtKhoa" Style="{StaticResource InputStyle}"/>
+
+                    <TextBlock Text="Chuyên ngành:" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="txtMajor" Style="{StaticResource InputStyle}"/>
+                    <Button Content="Cập nhật" Style="{StaticResource SaveButton}"
+                            Click="BtnSave_Click"/>
+
+                </StackPanel>
+
+                <!-- NÚT LƯU -->
+                
+            </Grid>
+        </Border>
+        
     </Grid>
 </Window>
