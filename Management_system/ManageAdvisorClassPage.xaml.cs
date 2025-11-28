@@ -36,7 +36,7 @@ namespace Management_system
                 string query = @"SELECT cc.teacher_id, cc.khoa, cc.advisorClass_name, t.full_name
                                         FROM Advisor_Class cc
                                         LEFT JOIN teacher t
-                                        ON cc.teacher_id = t.teacher_id;";
+                                        ON cc.teacher_id = t.teacher_id";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -79,10 +79,10 @@ namespace Management_system
                 string sql = @"SELECT cc.teacher_id, cc.khoa, cc.advisorClass_name, t.full_name
                                         FROM Advisor_Class cc
                                         LEFT JOIN teacher t
-                                        ON cc.teacher_id = t.teacher_id;
-                            WHERE teacher_id LIKE @kw 
-                               OR advisorClass_name LIKE @kw 
-                               OR full_name LIKE @kw";
+                                        ON cc.teacher_id = t.teacher_id
+                            WHERE cc.teacher_id LIKE @kw 
+                               OR cc.advisorClass_name LIKE @kw 
+                               OR t.full_name LIKE @kw";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@kw", "%" + keyword + "%");
@@ -137,12 +137,34 @@ namespace Management_system
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            var row = GetSelected();
-            if (row == null) return;
+            if (dtgAdvisorClass.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn một dòng để sửa!");
+                return;
+            }
 
-            EditAdvisorClassWindow edit = new EditAdvisorClassWindow(row["teacher_id"].ToString());
-            edit.ShowDialog();
+            DataRowView row = dtgAdvisorClass.SelectedItem as DataRowView;
 
+            if (row == null)
+            {
+                MessageBox.Show("Lỗi: không thể đọc dữ liệu dòng.");
+                return;
+            }
+
+            // Lấy teacher_id từ binding
+            string teacherId = row["teacher_id"].ToString();
+
+            if (string.IsNullOrEmpty(teacherId))
+            {
+                MessageBox.Show("Không tìm thấy teacher_id của dòng được chọn!");
+                return;
+            }
+
+            // Mở form sửa
+            EditAdvisorClassWindow editWin = new EditAdvisorClassWindow(teacherId);
+            editWin.ShowDialog();
+
+            // Reload lại bảng sau khi sửa
             LoadAdvisorClass();
         }
     }
