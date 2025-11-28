@@ -24,7 +24,7 @@
         <StackPanel Grid.Row="1" Margin="10">
 
             <!-- USERNAME -->
-            <TextBlock Text="Tên Đăng nhập:" FontWeight="Bold" Foreground="#444"/>
+            <TextBlock Text="Đăng nhập:" FontWeight="Bold" Foreground="#444"/>
             <TextBox x:Name="txtUsername" Height="30" Margin="0,5,0,10" TextChanged="TxtUsername_TextChanged" Background="#FAFAFA" BorderBrush="#DDDDDD" />
 
             <!-- PASSWORD -->

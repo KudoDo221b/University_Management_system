@@ -36,7 +36,7 @@ namespace Management_system
                 try
                 {
                     conn.Open();
-                    string query = "SELECT * FROM Admin WHERE admin_name=@user AND password=@pass";
+                    string query = "SELECT * FROM Admin WHERE admin_id=@user AND password=@pass";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@user", user);
                     cmd.Parameters.AddWithValue("@pass", pass);
