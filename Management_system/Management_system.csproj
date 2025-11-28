@@ -194,6 +194,9 @@
       <DependentUpon>ManageTuitionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Student.cs" />
+    <Compile Include="ViewReportPage.xaml.cs">
+      <DependentUpon>ViewReportPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WebBrowserPage.xaml.cs">
       <DependentUpon>WebBrowserPage.xaml</DependentUpon>
     </Compile>
@@ -296,6 +299,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ManageTuitionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
