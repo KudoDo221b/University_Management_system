@@ -163,6 +163,9 @@
     </Compile>
     <Compile Include="Admin.cs" />
     <Compile Include="DBHelper.cs" />
+    <Compile Include="EditAdminWindow.xaml.cs">
+      <DependentUpon>EditAdminWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditAdvisorClassWindow.xaml.cs">
       <DependentUpon>EditAdvisorClassWindow.xaml</DependentUpon>
     </Compile>
@@ -238,6 +241,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddTeacherWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditAdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

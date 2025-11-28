@@ -6,12 +6,10 @@
       xmlns:fa="http://schemas.fontawesome.io/icons/"
       xmlns:local="clr-namespace:Management_system.Pages"
       mc:Ignorable="d" 
-      
       Title="AccountPage"
       Background="White">
 
     <Grid Margin="40, 30">
-        <!-- ⭐ CARD MATERIAL DESIGN -->
         <Border Background="White"
                 CornerRadius="12"
                 Padding="25"
@@ -20,7 +18,6 @@
                 Effect="{DynamicResource CardShadow}">
 
             <Border.Resources>
-                <!-- Đổ bóng Material -->
                 <DropShadowEffect x:Key="CardShadow"
                                   Color="#000000"
                                   BlurRadius="18"
@@ -29,87 +26,112 @@
             </Border.Resources>
 
             <StackPanel>
-
-                
-
-                <!-- STYLE CHUNG -->
-                <StackPanel.Resources>
-
-                    <!-- Dòng thông tin -->
-                    <Style x:Key="InfoRow" TargetType="StackPanel">
-                        <Setter Property="Orientation" Value="Horizontal"/>
-                        <Setter Property="Margin" Value="0,10"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                        
-                    </Style>
-
-                    <!-- Nhãn -->
-                    <Style x:Key="LabelStyle" TargetType="TextBlock">
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Width" Value="160"/>
-                        <Setter Property="Foreground" Value="#333"/>
-                        <Setter Property="FontSize" Value="16"/>
-                    </Style>
-
-                    <!-- Giá trị -->
-                    <Style x:Key="ValueStyle" TargetType="TextBlock">
-                        <Setter Property="Foreground" Value="#444"/>
-                        <Setter Property="FontSize" Value="16"/>
-                    </Style>
-
-                </StackPanel.Resources>
-                <!-- ⭐ TIÊU ĐỀ -->
                 <TextBlock Text="Thông Tin Tài Khoản Admin"
                            FontSize="28"
                            FontWeight="Bold"
                            Foreground="#B00020"
-                           Margin="0,0,0,20"/>
+                           Margin="0,0,0,25"/>
 
-                <!-- ⭐ Mã Admin -->
-                <StackPanel Style="{StaticResource InfoRow}">
-                    <fa:ImageAwesome Icon="User" Width="15" Foreground="#555" Margin="0 0 5 0"/>
-                    <!-- ICON -->
-                    <TextBlock Text="Mã Admin:" Style="{StaticResource LabelStyle}"/>
-                    <TextBlock Text="{Binding AdminId}" Style="{StaticResource ValueStyle}"/>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <!-- ⭐ Tên Admin -->
-                <StackPanel Style="{StaticResource InfoRow}">
-                    <fa:ImageAwesome Icon="UserCircle" Width="15" Foreground="#555" Margin="0 0 5 0"/>
-                    <TextBlock Text="Tên Admin:" Style="{StaticResource LabelStyle}"/>
-                    <TextBlock Text="{Binding AdminName}" Style="{StaticResource ValueStyle}"/>
-                </StackPanel>
+                    <StackPanel Grid.Column="0" Margin="0, 0, 25, 0" HorizontalAlignment="Center">
+                        <Ellipse Width="180" Height="180" Stroke="#CCCCCC" StrokeThickness="2"  
+         Margin="0,15,0,15" x:Name="imgAvatar">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="pack://application:,,,/images/logo.png"/>
+                            </Ellipse.Fill>
 
-                <!-- ⭐ Giới tính -->
-                <StackPanel Style="{StaticResource InfoRow}">
-                    <fa:ImageAwesome Icon="VenusMars" Width="15" Foreground="#555" Margin="0 0 5 0"/>
-                    <TextBlock Text="Giới tính:" Style="{StaticResource LabelStyle}"/>
-                    <TextBlock Text="{Binding Gender}" Style="{StaticResource ValueStyle}"/>
-                </StackPanel>
+                        </Ellipse>
 
-                <!-- ⭐ Email -->
-                <StackPanel Style="{StaticResource InfoRow}">
-                    <fa:ImageAwesome Icon="Envelope" Width="15" Foreground="#555" Margin="0 0 5 0"/>
-                    <TextBlock Text="Email:" Style="{StaticResource LabelStyle}"/>
-                    <TextBlock Text="{Binding Email}" Style="{StaticResource ValueStyle}"/>
-                </StackPanel>
+                        <Button Content="Cập nhật ảnh" 
+                                Click="UpdateImage_Click"
+                                Background="#007ACC" Foreground="White" 
+                                Padding="10" Margin="0,0,0,10" 
+                                FontWeight="SemiBold" Cursor="Hand"/>
 
-                <!-- ⭐ Số điện thoại -->
-                <StackPanel Style="{StaticResource InfoRow}">
-                    <fa:ImageAwesome Icon="Phone" Width="15" Foreground="#555" Margin="0 0 5 0"/>
-                    <TextBlock Text="Số điện thoại:" Style="{StaticResource LabelStyle}"/>
-                    <TextBlock Text="{Binding Phone}" Style="{StaticResource ValueStyle}"/>
-                </StackPanel>
+                        <Button Content="Xóa ảnh" 
+                                Click="DeleteImage_Click"
+                                Background="#C0392B" Foreground="White" 
+                                Padding="10" 
+                                FontWeight="SemiBold" Cursor="Hand"/>
+                    </StackPanel>
 
-                <!-- ⭐ Địa chỉ -->
-                <StackPanel Style="{StaticResource InfoRow}">
-                    <fa:ImageAwesome Icon="Home" Width="15" Foreground="#555" Margin="0 0 5 0"/>
-                    <TextBlock Text="Địa chỉ:" Style="{StaticResource LabelStyle}"/>
-                    <TextBlock Text="{Binding Address}" Style="{StaticResource ValueStyle}"/>
-                </StackPanel>
 
+                    <StackPanel Grid.Column="1">
+
+                        <StackPanel.Resources>
+                            <Style x:Key="InfoRow" TargetType="StackPanel">
+                                <Setter Property="Orientation" Value="Horizontal"/>
+                                <Setter Property="Margin" Value="0,10"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+
+                            <Style x:Key="LabelStyle" TargetType="TextBlock">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Width" Value="160"/>
+                                <Setter Property="Foreground" Value="#333"/>
+                                <Setter Property="FontSize" Value="16"/>
+                            </Style>
+
+                            <Style x:Key="ValueStyle" TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="#444"/>
+                                <Setter Property="FontSize" Value="16"/>
+                            </Style>
+
+                        </StackPanel.Resources>
+
+                        <StackPanel Style="{StaticResource InfoRow}">
+                            <fa:ImageAwesome Icon="User" Width="15" Foreground="#555" Margin="0 0 5 0"/>
+                            <TextBlock Text="Mã Admin:" Style="{StaticResource LabelStyle}"/>
+                            <TextBlock Text="{Binding AdminId}" Style="{StaticResource ValueStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource InfoRow}">
+                            <fa:ImageAwesome Icon="UserCircle" Width="15" Foreground="#555" Margin="0 0 5 0"/>
+                            <TextBlock Text="Tên Admin:" Style="{StaticResource LabelStyle}"/>
+                            <TextBlock Text="{Binding AdminName}" Style="{StaticResource ValueStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource InfoRow}">
+                            <fa:ImageAwesome Icon="VenusMars" Width="15" Foreground="#555" Margin="0 0 5 0"/>
+                            <TextBlock Text="Giới tính:" Style="{StaticResource LabelStyle}"/>
+                            <TextBlock Text="{Binding Gender}" Style="{StaticResource ValueStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource InfoRow}">
+                            <fa:ImageAwesome Icon="Envelope" Width="15" Foreground="#555" Margin="0 0 5 0"/>
+                            <TextBlock Text="Email:" Style="{StaticResource LabelStyle}"/>
+                            <TextBlock Text="{Binding Email}" Style="{StaticResource ValueStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource InfoRow}">
+                            <fa:ImageAwesome Icon="Phone" Width="15" Foreground="#555" Margin="0 0 5 0"/>
+                            <TextBlock Text="Số điện thoại:" Style="{StaticResource LabelStyle}"/>
+                            <TextBlock Text="{Binding Phone}" Style="{StaticResource ValueStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource InfoRow}">
+                            <fa:ImageAwesome Icon="Home" Width="15" Foreground="#555" Margin="0 0 5 0"/>
+                            <TextBlock Text="Địa chỉ:" Style="{StaticResource LabelStyle}"/>
+                            <TextBlock Text="{Binding Address}" Style="{StaticResource ValueStyle}"/>
+                        </StackPanel>
+
+                        <Separator Margin="0, 15, 0, 5"/>
+
+                        <Button Content="Chỉnh sửa thông tin cá nhân" 
+                                HorizontalAlignment="Left"
+                                Click="EditInfo_Click"
+                                Background="#3498DB" Foreground="White" 
+                                Padding="10" Margin="0,10,0,0" 
+                                FontWeight="SemiBold" Cursor="Hand"/>
+
+                    </StackPanel>
+                </Grid>
             </StackPanel>
         </Border>
     </Grid>
-
 </Page>

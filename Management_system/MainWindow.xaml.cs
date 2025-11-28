@@ -103,5 +103,9 @@ namespace AdminPortal
         {
             MainFrame.Content = new ManageAdvisorClassPage();
         }
+        private void BtnXBaoCao_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new ViewReportPage();
+        }
     }
 }

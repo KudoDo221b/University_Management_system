@@ -4,9 +4,33 @@
         Title="Hệ thống quản trị " Height="600" Width="1400"
         WindowStartupLocation="CenterScreen">
 
+    <Window.Resources>
+
+        <Style x:Key="IconStyle" TargetType="Path">
+            <Setter Property="Fill" Value="#555555"/>
+            <Setter Property="Stretch" Value="Uniform"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+
+        <Style x:Key="SidebarButtonStyle" TargetType="Button">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E0E0E0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <DockPanel>
 
-        <!-- HEADER TRÊN CÙNG (giống myDTU) -->
         <Grid DockPanel.Dock="Top" Height="76" Background="#CC0000" Margin="0,0,-0.4,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
@@ -14,113 +38,158 @@
                 <ColumnDefinition Width="250"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Logo / tên hệ thống -->
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0" >
                 <Image Source="images/logo.png" Width="70" Height="70" VerticalAlignment="Center">
                     <Image.Clip>
                         <EllipseGeometry Center="35,35" RadiusX="35" RadiusY="35"/>
                     </Image.Clip>
                 </Image>
-                
             </StackPanel>
 
-            <!-- Menu top -->
             <StackPanel Grid.Column="1" Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center" >
-                <StackPanel.Resources>
-                    
-                </StackPanel.Resources>
                 <Button Content="Trang chủ" Style="{StaticResource GlowButton}" Height="Auto" Width="Auto" Click="BtnHome_Click"/>
                 <Button Content="Forum" Click="BtnForum_Click"/>
                 <Button Content="Email" Click="BtnEmail_Click"/>
                 <Button Content="e-Lib" Click="BtnELib_Click"/>
             </StackPanel>
 
-            <!-- Khu vực user / ngôn ngữ -->
             <StackPanel Grid.Column="2" Orientation="Horizontal"
                         HorizontalAlignment="Right" VerticalAlignment="Center"
                         Margin="0,0,10,0">
                 <TextBlock Text="Xin chào, Admin" Foreground="White"
                            VerticalAlignment="Center" Margin="0,0,15,0"/>
-                <Button Content="Thoát" Padding="12,5"
+
+                <Button Click="BtnExit_Click"
+                        Padding="12,5"
                         BorderThickness="0"
-                        Background="LightGray" FontWeight="Bold"
-                        Foreground="Black" Click="BtnExit_Click"/>
+                        Background="LightGray" 
+                        FontWeight="Bold"
+                        Foreground="Black"
+                        Cursor="Hand">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Path Data="M16,17V14H10V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z"
+                              Fill="Black" Height="16" Width="16" Margin="0,0,5,0" Stretch="Uniform"/>
+                        <TextBlock Text="Thoát" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
         </Grid>
 
-        <!-- STATUS BAR DƯỚI CÙNG -->
         <StatusBar DockPanel.Dock="Bottom">
             <TextBlock Text="Hệ thống sẵn sàng"/>
         </StatusBar>
 
-        <!-- NỘI DUNG CHÍNH -->
         <Grid>
             <Grid.ColumnDefinitions>
-                <!-- SIDEBAR TRÁI -->
                 <ColumnDefinition Width="230"/>
-                <!-- VÙNG CONTENT -->
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- SIDEBAR ADMIN -->
             <Border Grid.Column="0" BorderBrush="#DDDDDD" BorderThickness="0,0,1,0"
-                    Background="#FAFAFA">
+        Background="#FAFAFA">
                 <StackPanel Margin="10">
                     <TextBlock Text="{Binding adminName}" Background="#CC0000" Padding="5" FontSize="15" FontWeight="Bold" Foreground="White"
-                               Margin="0,0, 0, 12" Height="25" TextAlignment="Center"/>
+                   Margin="0,0, 0, 12" Height="30" TextAlignment="Center"/>
 
-                    <Button Content="Thông tin tài khoản" Style="{StaticResource GlowButton}"
-                            Margin="0,0,0,5" Padding="5" Click="Account_Info"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Click="Account_Info">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Style="{StaticResource IconStyle}" 
+                      Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                            <TextBlock Text="Thông tin tài khoản" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Separator Margin="0,5"/>
+                    <TextBlock Text="Quản lý" FontWeight="Bold" Margin="0,5" Foreground="#333333"/>
+
+                    <Button Style="{StaticResource SidebarButtonStyle}" Click="BtnQLSinhVien_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Style="{StaticResource IconStyle}" 
+                      Data="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z" />
+                            <TextBlock Text="Quản lý Sinh viên" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource SidebarButtonStyle}" Click="BtnQLGiangVien_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Style="{StaticResource IconStyle}" 
+                      Data="M12,19.2C9.5,19.2 7.29,17.92 6,16C7.03,14.39 10.21,13.29 12,13.29C13.79,13.29 16.97,14.39 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                            <TextBlock Text="Quản lý Giảng viên" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource SidebarButtonStyle}" Click="BtnQLLopCoVan_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Style="{StaticResource IconStyle}" 
+                      Data="M10,2A2,2 0 0,0 8,4V20A2,2 0 0,0 10,22H14A2,2 0 0,0 16,20V4A2,2 0 0,0 14,2H10M4,5V7H20V5H4M4,9V11H20V9H4M4,13V15H20V13H4M4,17V19H20V17H4Z" />
+                            <TextBlock Text="Quản lý Lớp cố vấn" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource SidebarButtonStyle}" Click="BtnQLMonHoc_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Style="{StaticResource IconStyle}" 
+                      Data="M18,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V4A2,2 0 0,0 18,2M6,4H11V12L8.5,10.5L6,12V4Z" />
+                            <TextBlock Text="Quản lý Môn học" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource SidebarButtonStyle}" Click="BtnQLLop_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Style="{StaticResource IconStyle}" 
+                      Data="M4,3H20A2,2 0 0,1 22,5V19A2,2 0 0,1 20,21H4A2,2 0 0,1 2,19V5A2,2 0 0,1 4,3M4,5V19H20V5H4Z" />
+                            <TextBlock Text="Quản lý Lớp học phần" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource SidebarButtonStyle}" Click="BtnQLLich_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Style="{StaticResource IconStyle}" 
+                      Data="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.11,3 19,3H18V1" />
+                            <TextBlock Text="Quản lý lịch" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource SidebarButtonStyle}" Click="BtnQLHocPhi_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Style="{StaticResource IconStyle}" 
+                      Data="M16,21H12V17A2,2 0 0,0 10,15H4A2,2 0 0,0 2,17V21H14V17A2,2 0 0,0 16,15H20V17A2,2 0 0,0 22,19V21H18V17A2,2 0 0,0 16,15V21M17,14V10H14V6L17.5,7L21,6V10H18V14L17.5,15L17,14M9,14V10H6V6L9.5,7L13,6V10H10V14L9.5,15L9,14Z" />
+                            <TextBlock Text="Quản lý Học phí" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
                     <Separator Margin="0,5"/>
 
-                    <TextBlock Text="Quản lý" FontWeight="Bold" Margin="0,5"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Click="BtnXBaoCao_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Style="{StaticResource IconStyle}" 
+                      Data="M2,21H20V19H2V21M20,8V10H16V8H20M14,15V17H10V15H14M12,4V6H8V4H12Z" />
+                            <TextBlock Text="Xem báo cáo" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-                    <Button Content="Quản lý Sinh viên"
-                            Margin="0,0,0,5" Padding="5"
-                            Click="BtnQLSinhVien_Click"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Click="BtnQLThongBao_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Style="{StaticResource IconStyle}" 
+                      Data="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z" />
+                            <TextBlock Text="Gửi thông báo" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-                    <Button Content="Quản lý Giảng viên"
-                            Margin="0,0,0,5" Padding="5"
-                            Click="BtnQLGiangVien_Click"/>
-                    
-                    <Button Content="Quản lý Lớp cố vấn"
-                            Margin="0,0,0,5" Padding="5"
-                            Click="BtnQLLopCoVan_Click"/>
-                    
-                    <Button Content="Quản lý Môn học"
-                            Margin="0,0,0,5" Padding="5"
-                            Click="BtnQLMonHoc_Click"/>
-
-                    <Button Content="Quản lý Lớp học phần"
-                            Margin="0,0,0,5" Padding="5"
-                            Click="BtnQLLop_Click"/>
-
-                    <Button Content="Quản lý lịch"
-                            Margin="0,0,0,5" Padding="5"
-                            Click="BtnQLLich_Click"/>
-
-                    <Button Content="Quản lý Học phí"
-                            Margin="0,0,0,5" Padding="5"
-                            Click="BtnQLHocPhi_Click"/>
-
-                    <Separator Margin="0,5"/>
-
-                    <Button Content="Gửi thông báo"
-                            Margin="0,0,0,5" Padding="5"
-                            Click="BtnQLThongBao_Click"/>
-
-                    <Button Content="Hướng dẫn sử dụng"
-                            Margin="0,0,0,5" Padding="5"
-                            Click="BtnHDSD_Click"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Click="BtnHDSD_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Style="{StaticResource IconStyle}" 
+                      Data="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2M13,20C13,19.45 12.55,19 12,19C11.45,19 11,19.45 11,20H13M13,18C13,17.45 12.55,17 12,17C11.45,17 11,17.45 11,18H13M13,16C13,15.45 12.55,15 12,15C11.45,15 11,15.45 11,16H13M13,14C13,13.45 12.55,13 12,13C11.45,13 11,13.45 11,14H13M13,12C13,11.45 12.55,11 12,11C11.45,11 11,11.45 11,12H13M13,10C13,9.45 12.55,9 12,9C11.45,9 11,9.45 11,10H13Z" />
+                            <TextBlock Text="Hướng dẫn sử dụng" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
             </Border>
 
-            
         </Grid>
-        <!-- FRAME HIỂN THỊ PAGE -->
+
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </DockPanel>
 </Window>
