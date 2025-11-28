@@ -140,6 +140,9 @@
     <Compile Include="AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddAdvisorClassWindow.xaml.cs">
+      <DependentUpon>AddAdvisorClassWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddClassWindow.xaml.cs">
       <DependentUpon>AddClassWindow.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,9 @@
     </Compile>
     <Compile Include="Admin.cs" />
     <Compile Include="DBHelper.cs" />
+    <Compile Include="EditAdvisorClassWindow.xaml.cs">
+      <DependentUpon>EditAdvisorClassWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditClassWindow.xaml.cs">
       <DependentUpon>EditClassWindow.xaml</DependentUpon>
     </Compile>
@@ -174,6 +180,9 @@
     </Compile>
     <Compile Include="EditTeacherWindow.xaml.cs">
       <DependentUpon>EditTeacherWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAdvisorClassPage.xaml.cs">
+      <DependentUpon>ManageAdvisorClassPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManageClassPage.xaml.cs">
       <DependentUpon>ManageClassPage.xaml</DependentUpon>
@@ -201,6 +210,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddAdvisorClassWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddClassWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -222,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddTeacherWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditAdvisorClassWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -271,6 +288,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ManageAdvisorClassPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ManageClassPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

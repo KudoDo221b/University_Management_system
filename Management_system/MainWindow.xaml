@@ -85,7 +85,11 @@
                     <Button Content="Quản lý Giảng viên"
                             Margin="0,0,0,5" Padding="5"
                             Click="BtnQLGiangVien_Click"/>
-
+                    
+                    <Button Content="Quản lý Lớp cố vấn"
+                            Margin="0,0,0,5" Padding="5"
+                            Click="BtnQLLopCoVan_Click"/>
+                    
                     <Button Content="Quản lý Môn học"
                             Margin="0,0,0,5" Padding="5"
                             Click="BtnQLMonHoc_Click"/>
