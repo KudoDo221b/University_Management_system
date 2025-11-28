@@ -108,5 +108,6 @@ namespace Management_system.Pages
 
             LoadNotifications();
         }
+        
     }
 }

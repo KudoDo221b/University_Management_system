@@ -98,5 +98,10 @@ namespace AdminPortal
         {
             MainFrame.Content = new ManageTuitionPage();
         }
+
+        private void BtnQLLopCoVan_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new ManageAdvisorClassPage();
+        }
     }
 }
