@@ -1,7 +1,8 @@
 ﻿<Window x:Class="Management_system.EditAdminWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Chỉnh sửa thông tin Admin" Height="500" Width="820"
+        Title="Chỉnh sửa thông tin Admin"
+        Height="500" Width="820"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
@@ -11,24 +12,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- AVATAR -->
+        <!-- AVATAR CHỈ XEM -->
         <StackPanel Grid.Column="0" HorizontalAlignment="Center">
             <Ellipse Width="160" Height="160" Stroke="#CCC"
-                     StrokeThickness="2" x:Name="imgAvatar" Margin="0,10">
-                <Ellipse.Fill>
-                    <ImageBrush ImageSource="images/admin_avatar.png"/>
-                </Ellipse.Fill>
-            </Ellipse>
-
-            <Button Content="Chọn ảnh"
-                    Width="130" Margin="0,10"
-                    Background="#3498db" Foreground="White"
-                    Click="BtnChooseImage_Click"/>
-
-            <Button Content="Xóa ảnh"
-                    Width="130"
-                    Background="#e74c3c" Foreground="White"
-                    Click="BtnDeleteImage_Click"/>
+                     StrokeThickness="2" x:Name="imgAvatar" Margin="0,10"/>
         </StackPanel>
 
         <!-- FORM -->
@@ -64,6 +51,5 @@
                     Margin="0,25,0,0"
                     Click="BtnSave_Click"/>
         </StackPanel>
-
     </Grid>
 </Window>

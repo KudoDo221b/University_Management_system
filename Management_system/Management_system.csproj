@@ -375,5 +375,10 @@
   <ItemGroup>
     <Folder Include="Pages\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\admin_avatar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

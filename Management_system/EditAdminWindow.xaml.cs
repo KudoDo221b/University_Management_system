@@ -13,7 +13,6 @@ namespace Management_system
     {
         private string adminId;
         private string currentAvatar;
-        private string newAvatarFile = null;
 
         public EditAdminWindow(string id)
         {
@@ -22,25 +21,6 @@ namespace Management_system
             LoadAdminInfo();
         }
 
-        // Convert link Google Drive
-        private string ConvertGoogleDrive(string url)
-        {
-            if (string.IsNullOrEmpty(url)) return null;
-            string id = null;
-
-            if (url.Contains("/file/d/"))
-            {
-                int s = url.IndexOf("/file/d/") + 8;
-                int e = url.IndexOf("/", s);
-                id = url.Substring(s, e - s);
-            }
-
-            if (id == null) return url;
-
-            return $"https://drive.google.com/uc?export=view&id={id}";
-        }
-
-        // LOAD ADMIN
         private void LoadAdminInfo()
         {
             using (MySqlConnection conn = DBHelper.GetConnection())
@@ -62,12 +42,12 @@ namespace Management_system
                     txtAddress.Text = rd["address"].ToString();
                     txtPassword.Password = rd["password"].ToString();
 
-                    string gender = rd["gender"].ToString();
-                    cbGender.SelectedIndex = (gender == "Nữ") ? 1 : 0;
-
                     currentAvatar = rd["avatar"]?.ToString();
 
                     LoadAvatar(currentAvatar);
+
+                    string gender = rd["gender"].ToString();
+                    cbGender.SelectedIndex = (gender == "Nữ") ? 1 : 0;
                 }
             }
         }
@@ -78,11 +58,9 @@ namespace Management_system
             {
                 if (!string.IsNullOrEmpty(url))
                 {
-                    string imgUrl = ConvertGoogleDrive(url);
-
                     BitmapImage bmp = new BitmapImage();
                     bmp.BeginInit();
-                    bmp.UriSource = new Uri(imgUrl, UriKind.Absolute);
+                    bmp.UriSource = new Uri(url, UriKind.RelativeOrAbsolute);
                     bmp.EndInit();
 
                     imgAvatar.Fill = new ImageBrush(bmp);
@@ -100,32 +78,6 @@ namespace Management_system
             }
         }
 
-        // CHỌN ẢNH
-        private void BtnChooseImage_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Ảnh (.png; .jpg)|*.png;*.jpg";
-
-            if (dlg.ShowDialog() == true)
-            {
-                newAvatarFile = dlg.FileName;
-
-                BitmapImage bmp = new BitmapImage(new Uri(newAvatarFile));
-                imgAvatar.Fill = new ImageBrush(bmp);
-            }
-        }
-
-        // XÓA ẢNH
-        private void BtnDeleteImage_Click(object sender, RoutedEventArgs e)
-        {
-            newAvatarFile = null;
-            currentAvatar = null;
-
-            imgAvatar.Fill = new ImageBrush(
-                new BitmapImage(new Uri("images/admin_avatar.png", UriKind.Relative)));
-        }
-
-        // NÚT LƯU THAY ĐỔI
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             string name = txtName.Text.Trim();
@@ -134,19 +86,6 @@ namespace Management_system
             string phone = txtPhone.Text.Trim();
             string address = txtAddress.Text.Trim();
             string password = txtPassword.Password;
-
-            string finalAvatar = currentAvatar;
-
-            // Nếu chọn ảnh mới → upload lên thư mục images
-            if (newAvatarFile != null)
-            {
-                string fileName = System.IO.Path.GetFileName(newAvatarFile);
-                string destPath = "images/" + fileName;
-
-                File.Copy(newAvatarFile, destPath, true);
-
-                finalAvatar = destPath;
-            }
 
             using (MySqlConnection conn = DBHelper.GetConnection())
             {
@@ -158,8 +97,7 @@ namespace Management_system
                         email=@email,
                         phone=@phone,
                         address=@address,
-                        password=@pwd,
-                        avatar=@avatar
+                        password=@pwd
                     WHERE admin_id=@id";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -170,16 +108,16 @@ namespace Management_system
                 cmd.Parameters.AddWithValue("@phone", phone);
                 cmd.Parameters.AddWithValue("@address", address);
                 cmd.Parameters.AddWithValue("@pwd", password);
-                cmd.Parameters.AddWithValue("@avatar", finalAvatar);
                 cmd.Parameters.AddWithValue("@id", adminId);
 
                 cmd.ExecuteNonQuery();
             }
 
-            MessageBox.Show("Cập nhật thành công!", "Thông báo",
+            MessageBox.Show("Cập nhật thông tin thành công!", "Thông báo",
                 MessageBoxButton.OK, MessageBoxImage.Information);
 
             this.Close();
         }
     }
 }
+
